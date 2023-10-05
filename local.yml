@@ -1,4 +1,8 @@
 - hosts: localhost
+  vars:
+    # home: "{{ lookup('env', 'HOME') }}"
+    user: "mokronos"
+    home: "/home/{{ user }}"
   # pre_tasks:
   #   - name: Update Apt
   #     become: true
@@ -10,3 +14,4 @@
   #       - core
   tasks:
     - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/dotfiles.yml

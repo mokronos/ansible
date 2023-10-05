@@ -1,0 +1,14 @@
+- name: Installing Stow
+  apt: name=stow
+  become: true
+  tags: &tags_dotfiles [ 'install', 'dotfiles', 'stow' ]
+
+- name: Cloning Dotfiles
+  git:
+    repo: "https://github.com/mokronos/.dotfiles.git"
+    dest: "{{ home }}/.dotfiles"
+  tags: *tags_dotfiles
+
+- name: Stowing Dotfiles
+  shell: cd {{ home }}/.dotfiles && ./install_dot
+  tags: *tags_dotfiles

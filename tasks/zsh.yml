@@ -1,27 +1,28 @@
 - name: Install ZSH
   apt: name=zsh
-  tags: &tags_zsh [ 'install', 'productivity', 'dotfiles', 'zsh' ]
+  become: true
+  tags: &tags_zsh [ 'install', 'dotfiles', 'zsh' ]
 
 - name: Change default shell to ZSH
   shell: chsh -s $(which zsh)
+  become: true
   tags: *tags_zsh
 
 - name: Check if Oh My ZSH is installed
   stat:
-    path: ~/.oh-my-zsh
+    path: "{{ home }}/.oh-my-zsh"
   register: oh_my_zsh
-  become_user: mokronos
   tags: *tags_zsh
 
 - name: Install Oh My ZSH
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
   when: oh_my_zsh.stat.exists == False
+  # become_user: "{{ user }}"
   tags: *tags_zsh
 
 # dotfiles have autosuggestions in the plugins line in .zshrc
 - name: Install zsh-autosuggestions
   git:
-    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
-    dest: '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions'
-  become_user: mokronos
+    repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
+    dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
   tags: *tags_zsh
