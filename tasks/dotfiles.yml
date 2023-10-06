@@ -12,3 +12,7 @@
 - name: Stowing Dotfiles
   shell: cd {{ home }}/.dotfiles && ./install
   tags: *tags_dotfiles
+
+- name: Install Neovim plugins
+  shell: "nvim --headless +PackerSync +qa"
+  tags: ['stow', 'dotfiles', 'install', 'nvim', 'plugins' ]

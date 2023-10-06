@@ -25,7 +25,3 @@
   shell: "cd {{ home }}/neovim && make CMAKE_BUILD_TYPE=Release && git checkout stable && make install"
   become: true
   tags: *tags_nvim
-
-- name: Install Neovim plugins
-  shell: "nvim --headless +PackerSync +qa"
-  tags: [ 'install', 'nvim', 'plugins' ]
