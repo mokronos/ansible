@@ -1,0 +1,18 @@
+- name: Install System Packages (build)
+  become: true
+  apt:
+    name: ["build-essential", "cmake"]
+  tags: &tags_core [ 'install', 'core' ]
+
+- name: Install System Packages (important)
+  become: true
+  apt:
+    name: ["unzip", "libtool", "tmux", "wireshark", "fzf", "gimp", "xclip", "tldr", "ripgrep", "tree"]
+  tags: *tags_core
+
+- name: Install System Packages (random)
+  become: true
+  apt:
+    name: ["picom", "curl", "htop", "lsof", "i3", "ccache", "dconf-editor", "moreutils", "clangd"]
+  tags: *tags_core
+

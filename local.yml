@@ -13,5 +13,10 @@
   #       - install
   #       - core
   tasks:
+    - import_tasks: tasks/git.yml
+    - import_tasks: tasks/core.yml
+    - import_tasks: tasks/node.yml
     - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/languages.yml
+    - import_tasks: tasks/nvim.yml
     - import_tasks: tasks/dotfiles.yml

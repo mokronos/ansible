@@ -1,0 +1,27 @@
+- name: Remove Neovim
+  shell: "rm -rf {{ home }}/neovim"
+  become: true
+  tags: &tags_nvim [ 'install', 'nvim' ]
+
+- name: Install Packer
+  git:
+    repo: "https://github.com/wbthomason/packer.nvim"
+    dest: "{{ home }}/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  tags: *tags_nvim
+
+- name: Install Neovim dependencies 
+  apt:
+    name: ["ninja-build", "gettext"]
+  become: true
+  tags: *tags_nvim
+
+- name: Clone Neovim
+  git:
+    repo: "https://github.com/neovim/neovim.git"
+    dest: "{{ home }}/neovim"
+  tags: *tags_nvim
+
+- name: Install Neovim
+  shell: "cd {{ home }}/neovim && make CMAKE_BUILD_TYPE=Release && git checkout stable && make install"
+  become: true
+  tags: *tags_nvim

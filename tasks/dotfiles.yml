@@ -10,5 +10,5 @@
   tags: *tags_dotfiles
 
 - name: Stowing Dotfiles
-  shell: cd {{ home }}/.dotfiles && ./install_dot
+  shell: cd {{ home }}/.dotfiles && ./install
   tags: *tags_dotfiles

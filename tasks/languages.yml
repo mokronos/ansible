@@ -1,0 +1,16 @@
+- name: Install pip
+  apt:
+    name: ["python3-pip"]
+  become: true
+  tags: 
+    - install
+    - lang
+    - python
+
+- name: Install sqlite3
+  apt:
+    name: ["sqlite3"]
+  become: true
+  tags: 
+    - install
+    - sqlite3
