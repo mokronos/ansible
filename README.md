@@ -17,6 +17,9 @@ ansible-playbook -K -t <tag> local.yml
 
 with tags like zsh, nvim, stow, etc. to install only some parts.
 
+## Issues
+
+For some reason setting the default terminal to zsh doesn't work automatically.
 
 ## To test stuff
 
