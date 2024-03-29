@@ -6,7 +6,7 @@
   - npm
 
 - name: Install node and set version
-  shell: "source ~/.nvm/nvm.sh && nvm install --lts"
+  shell: "source ~/.nvm/nvm.sh && nvm install --lts && nvm use --lts"
   args:
     executable: /bin/bash
   tags:

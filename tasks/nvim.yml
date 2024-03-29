@@ -19,3 +19,7 @@
   shell: "cd {{ home }}/neovim && make CMAKE_BUILD_TYPE=Release && git checkout stable && make install"
   become: true
   tags: *tags_nvim
+
+- name: Install neovim python
+  ansible.builtin.pip:
+    name: neovim
