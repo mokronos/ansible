@@ -4,12 +4,47 @@
     scope: global
     value: sebastian@hirts.de
   tags:
-    - git
+    - git_personal
+
+- name: Git Work Setup Email
+  git_config:
+    name: user.email
+    scope: global
+    value: sebastian.hirt@ancud.de
+  tags:
+    - git_work
 
 - name: Git Personal Setup Name
   git_config:
     name: user.name
     scope: global
     value: Sebastian Hirt
-  tags:
-    - git
+  tags: &tags_git [ 'git', 'git_personal', 'git_work']
+
+- name: Git reuse recorded resolution
+  git_config:
+    name: rerere.enabled
+    scope: global
+    value: true
+  tags: *tags_git
+
+- name: Git reuse recorded resolution
+  git_config:
+    name: rerere.autoupdate
+    scope: global
+    value: true
+  tags: *tags_git
+
+- name: Git sort branches by date
+  git_config:
+    name: branch.sort
+    scope: global
+    value: committerdate
+  tags: *tags_git
+
+- name: Git save force push
+  git_config:
+    name: alias.fpush
+    scope: global
+    value: push --force-with-lease
+  tags: *tags_git
