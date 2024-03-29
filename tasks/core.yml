@@ -16,3 +16,12 @@
     name: ["picom", "curl", "htop", "lsof", "i3", "ccache", "dconf-editor", "moreutils", "clangd"]
   tags: *tags_core
 
+- name: Install helper for WSL to open a variety of files
+  become: true
+  apt:
+    name: ["wslu"]
+  tags:
+    - install
+    - code
+    - wsl
+
