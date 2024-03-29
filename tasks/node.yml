@@ -1,8 +1,15 @@
-- name: Install nodejs and npm
-  apt:
-    name: ["nodejs", "npm"]
-  become: true
-  tags: 
-    - install
-    - node
-    - npm
+- name: Install nvm
+  shell: "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
+  tags:
+  - install
+  - node
+  - npm
+
+- name: Install node and set version
+  shell: "source ~/.nvm/nvm.sh && nvm install --lts"
+  args:
+    executable: /bin/bash
+  tags:
+  - install
+  - node
+  - npm
